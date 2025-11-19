@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío: Layout Adaptativo (MQ + Flex)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="text-2xl font-bold">App Dashboard</h1>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#" class="text-white opacity-90 hover:opacity-100 transition-opacity">Inicio</a></li>
+                <li><a href="#" class="text-white opacity-90 hover:opacity-100 transition-opacity">Perfil</a></li>
+                <li><a href="#" class="text-white opacity-90 hover:opacity-100 transition-opacity">Salir</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-layout">
+
+        <aside class="sidebar">
+            <h2 class="text-lg font-bold mb-3 text-gray-700">Enlaces Rápidos</h2>
+            <ul class="space-y-2 text-gray-600">
+                <li class="p-2 rounded-md bg-white border-l-4 border-blue-400">Panel General</li>
+                <li class="p-2">Mis Tareas</li>
+                <li class="p-2">Reportes</li>
+                <li class="p-2">Configuración</li>
+            </ul>
+        </aside>
+
+        <main class="content-area">
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">Bienvenido al Panel</h2>
+            <p class="mb-6 text-gray-600">Este es el área de contenido principal. El desafío es hacer que esta sección y la barra lateral se organicen en dos columnas al crecer la pantalla.</p>
+
+            <h3 class="text-xl font-bold mb-4 border-b pb-2 text-gray-800">Noticias Destacadas</h3>
+            <div class="news-cards-wrapper">
+
+                <div class="news-card">
+                    <h4 class="text-lg font-semibold mb-1 text-blue-700">Informe Semanal</h4>
+                    <p class="text-sm">Se ha publicado el informe de rendimiento de esta semana. Revísalo y deja tus comentarios.</p>
+                </div>
+
+                <div class="news-card">
+                    <h4 class="text-lg font-semibold mb-1 text-blue-700">Evento de Capacitación</h4>
+                    <p class="text-sm">Nueva sesión de capacitación en línea disponible. Regístrate antes del viernes para asegurar tu lugar.</p>
+                </div>
+
+            </div>
+
+            <div id="status-bar" class="mt-8 p-3 text-center text-sm font-semibold rounded-lg transition-all duration-300"></div>
+        </main>
+
+    </div>
+
+    <script>
+        const updateStatus = () => {
+            const width = window.innerWidth;
+            const statusBar = document.getElementById('status-bar');
+            const breakpoint = 768; 
+
+            if (width >= breakpoint) {
+                statusBar.className = 'mt-8 p-3 text-center text-sm font-semibold rounded-lg transition-all duration-300 bg-green-100 text-green-700 border-2 border-green-500';
+                statusBar.innerHTML = `Modo Desktop/Tablet (768px+) | Ancho Actual: ${width}px`;
+            } else {
+                statusBar.className = 'mt-8 p-3 text-center text-sm font-semibold rounded-lg transition-all duration-300 bg-yellow-100 text-yellow-700 border-2 border-yellow-500';
+                statusBar.innerHTML = `Modo Móvil (Mobile-First) | Ancho Actual: ${width}px`;
+            }
+        };
+
+        window.addEventListener('resize', updateStatus);
+        document.addEventListener('DOMContentLoaded', updateStatus);
+    </script>
+</body>
+</html>

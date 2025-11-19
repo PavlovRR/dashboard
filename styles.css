@@ -1,0 +1,144 @@
+:root {
+    --color-primary: #1e40af; 
+    --color-secondary: #fcd34d; 
+    --color-bg: #f9fafb; 
+    --color-text: #1f2937;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    margin: 0;
+}
+
+/* =============================
+   ESTILOS BASE (MOBILE-FIRST)
+   ============================= */
+
+/* Contenedor principal (mobile: layout en columna) */
+.main-layout {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: all 0.3s ease; /* Mejora 6: transición suave al cambiar layout */
+}
+
+/* Encabezado */
+.header {
+    background-color: var(--color-primary);
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08); /* Mejora 3: sombra tipo app web */
+}
+
+/* Menú de navegación */
+.nav-menu ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Barra lateral: en móvil ocupa todo el ancho */
+.sidebar {
+    background-color: #f3f4f6;              /* Mejora 2: fondo más suave */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px; 
+    border-right: 4px solid var(--color-primary); /* Mejora 2: borde lateral */
+}
+
+/* Hover en los elementos del sidebar */
+.sidebar ul li:hover {
+    background: #ffffff;
+    cursor: pointer;
+    border-left: 4px solid var(--color-primary);
+    transition: 0.2s;
+}
+
+/* Área de contenido principal: debajo del sidebar en móvil */
+.content-area {
+    padding-bottom: 20px;
+}
+
+/* Tarjetas de noticias: en móvil en columna */
+.news-cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.news-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--color-secondary);
+    border: 1px solid #e5e7eb;                  /* Mejora 5: borde sutil */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Mejora 1 */
+}
+
+/* Mejora 1: efecto hover en tarjetas */
+.news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Mejora 5: títulos de tarjetas más destacados */
+.news-card h4 {
+    color: var(--color-primary);
+}
+
+/* ==============================
+   LAYOUT DE ESCRITORIO / TABLET
+   ============================== */
+
+@media (min-width: 768px) {
+
+    /* A. Transformar layout principal a 2 columnas */
+    .main-layout {
+        display: flex;             /* activa flexbox */
+        flex-direction: row;       /* elementos en fila (sidebar + contenido) */
+        gap: 20px;                 /* espacio entre columnas */
+        align-items: flex-start;   /* alinear arriba */
+    }
+
+    /* B. Sidebar con ancho fijo y sin margen inferior */
+    .sidebar {
+        flex: 0 0 250px;           /* ancho fijo aprox. 250px */
+        margin-bottom: 0;          /* ya no necesitamos separación vertical */
+    }
+
+    /* Contenido principal ocupa el resto del espacio */
+    .content-area {
+        flex: 1;                   /* se expande para ocupar el resto */
+    }
+
+    /* C. Tarjetas de noticias en 2 columnas */
+    .news-cards-wrapper {
+        flex-direction: row;       /* de columna a fila */
+        flex-wrap: wrap;           /* permitir que brinquen a otra fila */
+        gap: 20px;                 /* espacio entre tarjetas */
+    }
+    
+    .news-card {
+        flex: 1 1 calc(50% - 10px); /* quepan 2 por fila aprox. */
+        box-sizing: border-box;
+    }
+}
+
+/* ==============================
+   MEJORA EXTRA EN PANTALLAS GRANDES
+   ============================== */
+
+@media (min-width: 1024px) {
+    .main-layout {
+        padding-top: 40px;
+        padding-bottom: 40px;   /* Mejora 4: más aire en pantallas grandes */
+    }
+}
